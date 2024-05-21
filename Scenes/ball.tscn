@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://b4g7kplyolf2v"]
+
+[ext_resource type="Script" path="res://Scripts/ball.gd" id="1_lcvtx"]
+[ext_resource type="Texture2D" uid="uid://bsnu534geyl6s" path="res://Assets/paddles_and_balls.png" id="2_272re"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bbtdg"]
+
+[sub_resource type="Gradient" id="Gradient_ccv5l"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_q864d"]
+gradient = SubResource("Gradient_ccv5l")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.846154, 0.871795)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pxrbu"]
+atlas = ExtResource("2_272re")
+region = Rect2(144, 8, 8, 8)
+
+[node name="Ball" type="CharacterBody2D"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+collision_layer = 2
+collision_mask = 21
+motion_mode = 1
+slide_on_ceiling = false
+floor_max_angle = 0.0
+script = ExtResource("1_lcvtx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4.1633e-12, -4.1633e-12)
+scale = Vector2(0.599381, 0.610628)
+shape = SubResource("CircleShape2D_bbtdg")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+range_layer_min = -1
+texture = SubResource("GradientTexture2D_q864d")
+texture_scale = 1.8
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(5.96046e-08, 1.19209e-07)
+scale = Vector2(1.25, 1.375)
+texture = SubResource("AtlasTexture_pxrbu")
