@@ -17,7 +17,6 @@ func _physics_process(delta: float):
 	var collision: KinematicCollision2D = move_and_collide(velocity)
 	if not collision:
 		return
-	direction = direction.bounce(collision.get_normal())
 		
 	var tile_map = collision.get_collider() as TileMap
 	if tile_map:
@@ -32,6 +31,14 @@ func _physics_process(delta: float):
 		else:
 			var source = tile_map.get_cell_source_id(0, location)
 			tile_map.set_cell(0, location, source, next_sprite)
+			
+	var paddle = collision.get_collider() as Paddle
+	if paddle:
+		var paddle_local: Vector2 = paddle.to_local(collision.get_position())
+		direction = (paddle_local + (paddle_local.length() * Vector2.UP)).normalized()
+		return
+		
+	direction = direction.bounce(collision.get_normal())
 
 func reset() -> void:
 	direction = Vector2.DOWN

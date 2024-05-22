@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bhpwncnc3t1nt"]
+[gd_scene load_steps=5 format=3 uid="uid://bhpwncnc3t1nt"]
 
 [ext_resource type="Script" path="res://Scripts/Paddle.gd" id="1_42h4n"]
 [ext_resource type="Texture2D" uid="uid://bsnu534geyl6s" path="res://Assets/paddles_and_balls.png" id="2_c8yjh"]
@@ -6,6 +6,9 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_mddcp"]
 atlas = ExtResource("2_c8yjh")
 region = Rect2(0, 7, 32, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mudkv"]
+size = Vector2(31.7748, 4.86997)
 
 [node name="Paddle" type="CharacterBody2D"]
 position = Vector2(2.08165e-12, 2.08165e-12)
@@ -16,13 +19,14 @@ motion_mode = 1
 up_direction = Vector2(2.28752e-12, -1)
 script = ExtResource("1_42h4n")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-build_mode = 1
-polygon = PackedVector2Array(-16, -3, -15, -4, -9, -5, -2.08165e-12, -6, 10, -5, 15, -4, 16, -3, 17, -2.08165e-12, -17, -2.08165e-12)
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-2.08165e-12, -2.08165e-12)
 texture = SubResource("AtlasTexture_mddcp")
 
 [node name="BallSpawnLocation" type="Marker2D" parent="."]
-position = Vector2(6, -11)
+position = Vector2(2.02815, -11)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.57829e-07, -2.43499)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_mudkv")

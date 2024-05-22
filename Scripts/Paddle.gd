@@ -18,6 +18,7 @@ func _physics_process(_delta) -> void:
 	velocity.x = direction * SPEED
 
 	move_and_slide()
+		
 
 func _input(event) -> void:
 	if event.is_action_pressed("release"):

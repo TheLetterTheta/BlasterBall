@@ -21,7 +21,6 @@ func _ready() -> void:
 	game_over_screen.visible = false
 	score_label.text = "Score: 0"
 	lives_label.text = "Lives: " + str(lives)
-
 	
 	start_ball()
 
@@ -43,16 +42,7 @@ func game_over() -> void:
 	game_over_screen.visible = true
 
 func restart_game() -> void:
-	if restart.pressed.is_connected(restart_game):
-		restart.pressed.disconnect(restart_game)
-	curr_lives = lives
-	score = 0
-	score_label.text = "Score: 0"
-	lives_label.text = "Lives: " + str(lives)
-	on_game_restart.emit()
-	
-	game_over_screen.visible = false
-	start_ball()
+	get_tree().reload_current_scene()
 
 func _on_paddle_release_ball() -> void:
 	ball.reparent(get_node("."))
